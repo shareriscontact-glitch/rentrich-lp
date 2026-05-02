@@ -13,10 +13,11 @@ import heroVault from '~/assets/hero-vault.jpg';
 
 const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID;
 const CONTACT_EMAIL = 'shareris.contact@gmail.com';
-const FORMSPREE_ENDPOINT = FORMSPREE_ID
-  ? FORMSPREE_ID.startsWith('https://') || FORMSPREE_ID.startsWith('http://')
-    ? FORMSPREE_ID
-    : `https://formspree.io/f/${FORMSPREE_ID}`
+const FORM_ID = typeof FORMSPREE_ID === 'string' && FORMSPREE_ID.trim() ? FORMSPREE_ID.trim() : 'xdabkyob';
+const FORMSPREE_ENDPOINT = FORM_ID
+  ? FORM_ID.startsWith('https://') || FORM_ID.startsWith('http://')
+    ? FORM_ID
+    : `https://formspree.io/f/${FORM_ID}`
   : '';
 
 const Index = () => {
@@ -496,7 +497,7 @@ const RegisterForm = () => {
   const set = (field: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
-  const openMailFallback = () => {
+  const mailFallbackHref = (() => {
     const subject = encodeURIComponent('RentRich 先行登録');
     const body = encodeURIComponent(
       [
@@ -511,14 +512,13 @@ const RegisterForm = () => {
       ].join('\n')
     );
 
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setStatus('mail');
-  };
+    return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  })();
 
   const onSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!FORMSPREE_ENDPOINT) {
-      openMailFallback();
+      setStatus('mail');
       return;
     }
     setStatus('loading');
@@ -538,10 +538,10 @@ const RegisterForm = () => {
         setStatus('success');
         setForm({ company: '', name: '', email: '', phone: '', message: '' });
       } else {
-        openMailFallback();
+        setStatus('mail');
       }
     } catch {
-      openMailFallback();
+      setStatus('mail');
     }
   };
 
@@ -662,9 +662,12 @@ const RegisterForm = () => {
           </p>
         )}
         {status === 'mail' && (
-          <p className="mt-6 font-mono-num text-gold-deep" style={{ fontSize: 13 }}>
-            メールアプリを起動しました。内容を確認して送信してください。
-          </p>
+          <div className="mt-6 text-text-secondary" style={{ fontSize: 13, lineHeight: 1.8 }}>
+            <p>フォーム送信を完了できませんでした。以下のリンクからメールで送信してください。</p>
+            <a href={mailFallbackHref} className="nav-link text-gold-deep">
+              メールを作成する
+            </a>
+          </div>
         )}
         {status === 'error' && (
           <p className="mt-6 text-risk-accent" style={{ fontSize: 13 }}>
