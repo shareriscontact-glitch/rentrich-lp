@@ -44,6 +44,11 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    if (!formspreeId) {
+      errorMsg.classList.remove('hidden');
+      return;
+    }
+
     const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
     submitButton.disabled = true;
     submitButton.textContent = '送信中...';

@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import React, { useState } from "react";
 import { useReveal } from "~/hooks/use-reveal";
 import itemWatch from "~/assets/item-watch.jpg";
 import itemCamera from "~/assets/item-camera.jpg";
@@ -11,7 +11,7 @@ import featureStorefront from "~/assets/feature-storefront.jpg";
 import featureBrand from "~/assets/feature-brand.jpg";
 import heroVault from "~/assets/hero-vault.jpg";
 
-const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID ?? "dummy";
+const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID;
 
 const Index = () => {
   useReveal();
@@ -374,8 +374,12 @@ const RegisterForm = () => {
   const set = (field: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!FORMSPREE_ID) {
+      setStatus("error");
+      return;
+    }
     setStatus("loading");
     try {
       const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
