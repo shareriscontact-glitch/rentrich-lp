@@ -12,6 +12,12 @@ import featureBrand from '~/assets/feature-brand.jpg';
 import heroVault from '~/assets/hero-vault.jpg';
 
 const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID;
+const CONTACT_EMAIL = 'shareris.contact@gmail.com';
+const FORMSPREE_ENDPOINT = FORMSPREE_ID
+  ? FORMSPREE_ID.startsWith('https://') || FORMSPREE_ID.startsWith('http://')
+    ? FORMSPREE_ID
+    : `https://formspree.io/f/${FORMSPREE_ID}`
+  : '';
 
 const Index = () => {
   useReveal();
@@ -484,21 +490,40 @@ const Features = () => {
 
 /* ---------------- REGISTER FORM ---------------- */
 const RegisterForm = () => {
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'mail' | 'error'>('idle');
   const [form, setForm] = useState({ company: '', name: '', email: '', phone: '', message: '' });
 
   const set = (field: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
+  const openMailFallback = () => {
+    const subject = encodeURIComponent('RentRich 先行登録');
+    const body = encodeURIComponent(
+      [
+        'RentRich 先行登録を希望します。',
+        '',
+        `会社名・屋号: ${form.company}`,
+        `ご担当者名: ${form.name}`,
+        `メールアドレス: ${form.email}`,
+        `連絡先電話番号: ${form.phone || '未入力'}`,
+        '',
+        `連絡事項: ${form.message || '未入力'}`,
+      ].join('\n')
+    );
+
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    setStatus('mail');
+  };
+
   const onSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!FORMSPREE_ID) {
-      setStatus('error');
+    if (!FORMSPREE_ENDPOINT) {
+      openMailFallback();
       return;
     }
     setStatus('loading');
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -513,10 +538,10 @@ const RegisterForm = () => {
         setStatus('success');
         setForm({ company: '', name: '', email: '', phone: '', message: '' });
       } else {
-        setStatus('error');
+        openMailFallback();
       }
     } catch {
-      setStatus('error');
+      openMailFallback();
     }
   };
 
@@ -634,6 +659,11 @@ const RegisterForm = () => {
         {status === 'success' && (
           <p className="mt-6 font-mono-num text-gold-deep" style={{ fontSize: 13 }}>
             ✓ 登録が完了しました。リリース時に真っ先にご連絡します。しばらくお待ちください。
+          </p>
+        )}
+        {status === 'mail' && (
+          <p className="mt-6 font-mono-num text-gold-deep" style={{ fontSize: 13 }}>
+            メールアプリを起動しました。内容を確認して送信してください。
           </p>
         )}
         {status === 'error' && (
