@@ -36,8 +36,6 @@
       "Bash(python3 -c \"import sys; html=sys.stdin.read\\(\\); print\\('heroVault found' if 'hero-vault' in html else 'NOT in HTML \\(React renders client-side\\)'\\)\")",
       "Bash(curl -s http://localhost:3030/_astro/index.pesVEOo6.css)"
     ],
-    "additionalDirectories": [
-      "/tmp/lovable-src/src/assets"
-    ]
+    "additionalDirectories": ["/tmp/lovable-src/src/assets"]
   }
 }

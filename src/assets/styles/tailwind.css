@@ -6,17 +6,17 @@
 
 @layer base {
   :root {
-    --bg-primary: 0 0% 3.1%;        /* #080808 */
-    --bg-secondary: 0 0% 5.9%;      /* #0F0F0F */
-    --bg-surface: 0 0% 7.8%;        /* #141414 */
-    --text-primary: 36 21% 92%;     /* #F0EDE8 parchment */
-    --text-secondary: 36 6% 41%;    /* #706B62 */
-    --gold-deep: 42 50% 44%;        /* #A8873A smoked gold */
-    --gold-light: 45 56% 54%;       /* #C9A84C */
-    --gold-muted: 36 30% 18%;       /* #3D3220 */
-    --border-default: 0 0% 12%;     /* #1E1E1E */
-    --border-gold: 36 25% 13%;      /* #2A2218 */
-    --risk-accent: 0 100% 27%;      /* #8B0000 */
+    --bg-primary: 0 0% 3.1%; /* #080808 */
+    --bg-secondary: 0 0% 5.9%; /* #0F0F0F */
+    --bg-surface: 0 0% 7.8%; /* #141414 */
+    --text-primary: 36 21% 92%; /* #F0EDE8 parchment */
+    --text-secondary: 36 6% 41%; /* #706B62 */
+    --gold-deep: 42 50% 44%; /* #A8873A smoked gold */
+    --gold-light: 45 56% 54%; /* #C9A84C */
+    --gold-muted: 36 30% 18%; /* #3D3220 */
+    --border-default: 0 0% 12%; /* #1E1E1E */
+    --border-gold: 36 25% 13%; /* #2A2218 */
+    --risk-accent: 0 100% 27%; /* #8B0000 */
 
     --background: var(--bg-primary);
     --foreground: var(--text-primary);
@@ -62,7 +62,7 @@
 
 @layer utilities {
   .font-display {
-    font-family: 'Shippori Mincho B1', 'Cormorant Garamond', "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-family: 'Shippori Mincho B1', 'Cormorant Garamond', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
     font-weight: 500;
   }
   .font-mono-num {
@@ -88,36 +88,69 @@
 
   .vault-engraving {
     background-image:
-      radial-gradient(circle at center, transparent 0, transparent 120px, hsl(var(--gold-deep) / 0.03) 121px, transparent 122px),
-      radial-gradient(circle at center, transparent 0, transparent 200px, hsl(var(--gold-deep) / 0.03) 201px, transparent 202px),
-      radial-gradient(circle at center, transparent 0, transparent 300px, hsl(var(--gold-deep) / 0.03) 301px, transparent 302px),
+      radial-gradient(
+        circle at center,
+        transparent 0,
+        transparent 120px,
+        hsl(var(--gold-deep) / 0.03) 121px,
+        transparent 122px
+      ),
+      radial-gradient(
+        circle at center,
+        transparent 0,
+        transparent 200px,
+        hsl(var(--gold-deep) / 0.03) 201px,
+        transparent 202px
+      ),
+      radial-gradient(
+        circle at center,
+        transparent 0,
+        transparent 300px,
+        hsl(var(--gold-deep) / 0.03) 301px,
+        transparent 302px
+      ),
       repeating-conic-gradient(from 0deg at center, hsl(var(--gold-deep) / 0.025) 0deg 0.4deg, transparent 0.4deg 15deg);
   }
   .vault-engraving-faint {
     background-image:
-      radial-gradient(circle at center, transparent 0, transparent 120px, hsl(var(--gold-deep) / 0.02) 121px, transparent 122px),
-      radial-gradient(circle at center, transparent 0, transparent 220px, hsl(var(--gold-deep) / 0.02) 221px, transparent 222px),
+      radial-gradient(
+        circle at center,
+        transparent 0,
+        transparent 120px,
+        hsl(var(--gold-deep) / 0.02) 121px,
+        transparent 122px
+      ),
+      radial-gradient(
+        circle at center,
+        transparent 0,
+        transparent 220px,
+        hsl(var(--gold-deep) / 0.02) 221px,
+        transparent 222px
+      ),
       repeating-conic-gradient(from 0deg at center, hsl(var(--gold-deep) / 0.018) 0deg 0.4deg, transparent 0.4deg 18deg);
   }
 
   .reveal {
     opacity: 0;
     transform: translateY(28px);
-    transition: opacity 0.75s cubic-bezier(0.25, 0.1, 0.25, 1),
-                transform 0.75s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition:
+      opacity 0.75s cubic-bezier(0.25, 0.1, 0.25, 1),
+      transform 0.75s cubic-bezier(0.25, 0.1, 0.25, 1);
     will-change: opacity, transform;
   }
   .reveal-left {
     opacity: 0;
     transform: translateX(-32px);
-    transition: opacity 0.75s cubic-bezier(0.25, 0.1, 0.25, 1),
-                transform 0.75s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition:
+      opacity 0.75s cubic-bezier(0.25, 0.1, 0.25, 1),
+      transform 0.75s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
   .reveal-right {
     opacity: 0;
     transform: translateX(32px);
-    transition: opacity 0.75s cubic-bezier(0.25, 0.1, 0.25, 1),
-                transform 0.75s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition:
+      opacity 0.75s cubic-bezier(0.25, 0.1, 0.25, 1),
+      transform 0.75s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
   .is-visible.reveal,
   .is-visible.reveal-left,
@@ -127,19 +160,37 @@
   }
 
   @keyframes hero-rise {
-    from { opacity: 0; transform: translateY(32px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   .hero-stagger > * {
     opacity: 0;
     animation: hero-rise 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
   }
-  .hero-stagger > *:nth-child(1) { animation-delay: 0s; }
-  .hero-stagger > *:nth-child(2) { animation-delay: 0.10s; }
-  .hero-stagger > *:nth-child(3) { animation-delay: 0.20s; }
-  .hero-stagger > *:nth-child(4) { animation-delay: 0.35s; }
-  .hero-stagger > *:nth-child(5) { animation-delay: 0.50s; }
-  .hero-stagger > *:nth-child(6) { animation-delay: 0.65s; }
+  .hero-stagger > *:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .hero-stagger > *:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .hero-stagger > *:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .hero-stagger > *:nth-child(4) {
+    animation-delay: 0.35s;
+  }
+  .hero-stagger > *:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .hero-stagger > *:nth-child(6) {
+    animation-delay: 0.65s;
+  }
 
   .nav-link {
     position: relative;
@@ -147,21 +198,32 @@
     transition: color 0.3s ease;
   }
   .nav-link::after {
-    content: "";
+    content: '';
     position: absolute;
-    left: 0; bottom: -4px;
-    height: 1px; width: 100%;
+    left: 0;
+    bottom: -4px;
+    height: 1px;
+    width: 100%;
     background: hsl(var(--gold-deep));
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease;
   }
-  .nav-link:hover { color: hsl(var(--gold-deep)); }
-  .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+  .nav-link:hover {
+    color: hsl(var(--gold-deep));
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 
   @keyframes marquee-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
   .marquee-track {
     display: flex;
@@ -173,12 +235,19 @@
   }
   .marquee-mask {
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
-            mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
   }
 
   @keyframes vault-breathe {
-    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.75; }
-    50%      { transform: scale(1.04) rotate(0.4deg); opacity: 0.9; }
+    0%,
+    100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 0.75;
+    }
+    50% {
+      transform: scale(1.04) rotate(0.4deg);
+      opacity: 0.9;
+    }
   }
   .hero-vault-bg {
     opacity: 0.8;
