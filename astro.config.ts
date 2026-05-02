@@ -58,6 +58,8 @@ export default defineConfig({
       HTML: {
         'html-minifier-terser': {
           removeAttributeQuotes: false,
+          // React SSR のインライン間空白を削るとハイドレーション (#418) が起きる
+          collapseWhitespace: false,
         },
       },
       Image: false,
