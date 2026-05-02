@@ -32,12 +32,11 @@ import '~/assets/styles/tailwind.css';
 
       elements.forEach((el) => {
         (el as HTMLElement).style.opacity = '0';
-        (el as HTMLElement).style.transform = 'translateY(24px)';
 
         inView(
           el,
           () => {
-            animate(el as HTMLElement, { opacity: 1, transform: 'translateY(0px)' }, { duration: 0.7, easing: [0.25, 0.1, 0.25, 1] });
+            animate(el as HTMLElement, { opacity: [0, 1], y: [24, 0] }, { duration: 0.7, easing: [0.25, 0.1, 0.25, 1] });
           },
           { margin: '-10% 0px' }
         );

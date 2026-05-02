@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import React, { useState } from "react";
 import { useReveal } from "~/hooks/use-reveal";
 import itemWatch from "~/assets/item-watch.jpg";
 import itemCamera from "~/assets/item-camera.jpg";
@@ -374,7 +374,7 @@ const RegisterForm = () => {
   const set = (field: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!FORMSPREE_ID) {
       setStatus("error");
