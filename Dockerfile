@@ -8,7 +8,7 @@ RUN npm install
 FROM base AS build
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+RUN mkdir -p node_modules/.astro && npm run build
 
 FROM nginx:stable-alpine AS deploy
 COPY --from=build /app/dist /usr/share/nginx/html

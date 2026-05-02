@@ -1,0 +1,35 @@
+---
+const features = [
+  {
+    icon: '✦',
+    title: '最短1日でショップ開設',
+    description: 'テンプレートを選んで商品を登録するだけ。技術知識は不要です。',
+  },
+  {
+    icon: '✦',
+    title: '決済・在庫・予約をワンストップ管理',
+    description: '複雑なレンタル業務をひとつの管理画面に集約。運営コストを大幅削減。',
+  },
+  {
+    icon: '✦',
+    title: 'ブランドらしいショップデザイン',
+    description: 'カラー・フォント・ロゴを自由にカスタマイズ。あなたのブランドらしさを表現。',
+  },
+];
+---
+
+<section data-animate="fade-in" class="py-32 px-6">
+  <h2 class="font-serif text-3xl md:text-4xl text-white text-center">なぜ RentRich か</h2>
+  <div class="w-12 h-px bg-gold mx-auto mt-4 mb-16"></div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+    {
+      features.map((feature) => (
+        <div class="text-center">
+          <p class="text-gold text-2xl mb-6">{feature.icon}</p>
+          <h3 class="font-serif text-xl text-white mb-3">{feature.title}</h3>
+          <p class="font-sans text-sm text-gray-400 leading-relaxed">{feature.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

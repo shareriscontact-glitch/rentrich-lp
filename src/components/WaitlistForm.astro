@@ -1,0 +1,72 @@
+---
+---
+
+<section id="waitlist" data-animate="fade-in" class="py-32 px-6 bg-zinc-950">
+  <div class="max-w-lg mx-auto text-center">
+    <h2 class="font-serif text-3xl md:text-4xl text-white">先行登録で初期費用3ヶ月無料</h2>
+    <p class="font-sans text-sm text-gray-400 mt-4 leading-relaxed">
+      今すぐウェイトリストに登録して、RentRichの先行アクセス権を取得しましょう。
+    </p>
+    <div class="mt-10">
+      <form id="waitlist-form" class="flex flex-col sm:flex-row gap-3">
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="your@email.com"
+          class="flex-1 px-4 py-3 bg-zinc-900 border border-zinc-700 text-white text-sm font-sans placeholder-zinc-500 focus:outline-none focus:border-gold rounded-none"
+        />
+        <button
+          type="submit"
+          class="px-6 py-3 bg-gold text-black text-sm font-sans font-medium tracking-widest uppercase hover:bg-gold-light transition-colors duration-300 rounded-none whitespace-nowrap"
+        >
+          登録する
+        </button>
+      </form>
+
+      <div id="form-success" class="hidden mt-6 text-gold font-sans text-sm tracking-wide">
+        ✓ 登録が完了しました。リリース時にご連絡します。
+      </div>
+
+      <div id="form-error" class="hidden mt-6 text-red-400 font-sans text-sm">
+        送信に失敗しました。しばらくしてから再度お試しください。
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('waitlist-form') as HTMLFormElement;
+  const successMsg = document.getElementById('form-success')!;
+  const errorMsg = document.getElementById('form-error')!;
+  const formspreeId = import.meta.env.PUBLIC_FORMSPREE_ID;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    submitButton.disabled = true;
+    submitButton.textContent = '送信中...';
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' },
+      });
+
+      if (response.ok) {
+        form.classList.add('hidden');
+        successMsg.classList.remove('hidden');
+      } else {
+        throw new Error('送信失敗');
+      }
+    } catch {
+      errorMsg.classList.remove('hidden');
+      submitButton.disabled = false;
+      submitButton.textContent = '登録する';
+    }
+  });
+</script>

@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker run *)",
+      "Bash(open -a Docker)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d.get\\('bin', {}\\)\\)\")",
+      "Bash(docker-compose down *)",
+      "Bash(docker-compose up *)",
+      "Bash(curl -s http://localhost:8080)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080)",
+      "Bash(docker-compose -f /Users/fukuk_macm2/Documents/rentrich-lp/docker-compose.yml ps)",
+      "Bash(docker-compose -f /Users/fukuk_macm2/Documents/rentrich-lp/docker-compose.yml logs)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3030)",
+      "Bash(curl -s http://localhost:3030)",
+      "Bash(docker-compose ps *)",
+      "Bash(docker-compose --project-directory /Users/fukuk_macm2/Documents/rentrich-lp -f /Users/fukuk_macm2/Documents/rentrich-lp/docker-compose.yml ps -a)",
+      "Bash(docker-compose --project-directory /Users/fukuk_macm2/Documents/rentrich-lp -f /Users/fukuk_macm2/Documents/rentrich-lp/docker-compose.yml up --build)",
+      "Bash(curl -s -o /dev/null -w \"HTTP status: %{http_code}\\\\n\" http://localhost:3030)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d[0]['State']['Status'], d[0]['NetworkSettings']['Ports']\\)\")",
+      "Bash(docker build *)",
+      "Bash(docker rm *)",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s -o /dev/null -w \"HTTP: %{http_code}\\\\n\" http://localhost:3030)",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('/Users/fukuk_macm2/Documents/rentrich-lp/tsconfig.json'\\)\\); print\\(json.dumps\\(d, indent=2\\)\\)\")",
+      "WebFetch(domain:vault-lease-guard.lovable.app)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); [print\\(k,v\\) for k,v in {**d.get\\('dependencies',{}\\), **d.get\\('devDependencies',{}\\)}.items\\(\\)]\")",
+      "Bash(curl -s \"http://localhost:3030/_astro/hero-vault.j4IG4kId.jpg\" -o /dev/null -w \"hero-vault: %{http_code}\\\\n\")",
+      "Bash(curl -s \"http://localhost:3030/_astro/item-watch.DmFwk4KY.jpg\" -o /dev/null -w \"item-watch: %{http_code}\\\\n\")",
+      "Bash(grep -o '\"/_astro/[^\"]*\\\\|`/_astro/[^`]*\\\\|/_astro/[a-zA-Z0-9._-]*' /Users/fukuk_macm2/Documents/rentrich-lp/dist/_astro/LandingPage.BUghrcWR.js)",
+      "Bash(curl -s http://localhost:3030/_astro/item-watch.DmFwk4KY.jpg -o /tmp/test-img.jpg)",
+      "Bash(curl -s http://localhost:3030/)",
+      "Bash(grep -o '\"/_astro[^\"]*\"\\\\|`/_astro[^`]*`' /Users/fukuk_macm2/Documents/rentrich-lp/dist/_astro/LandingPage.BUghrcWR.js)",
+      "Bash(kill %1)",
+      "Bash(docker stop *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3030/)",
+      "Bash(python3 -c \"import sys; html=sys.stdin.read\\(\\); print\\('heroVault found' if 'hero-vault' in html else 'NOT in HTML \\(React renders client-side\\)'\\)\")",
+      "Bash(curl -s http://localhost:3030/_astro/index.pesVEOo6.css)"
+    ],
+    "additionalDirectories": [
+      "/tmp/lovable-src/src/assets"
+    ]
+  }
+}

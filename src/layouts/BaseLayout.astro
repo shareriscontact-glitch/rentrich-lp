@@ -1,0 +1,47 @@
+---
+import '~/assets/styles/tailwind.css';
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RentRich — あなたのショップを、レンタルECへ。</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500&family=Cormorant+Garamond:wght@400;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <meta property="og:title" content="RentRich — あなたのショップを、レンタルECへ。" />
+    <meta
+      property="og:description"
+      content="ファッションブランドがかんたんにレンタルECを開設できるプラットフォーム。先行登録で初期費用3ヶ月無料。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body class="bg-black text-white">
+    <slot />
+    <script>
+      import { animate, inView } from 'motion';
+
+      const elements = document.querySelectorAll('[data-animate="fade-in"]');
+
+      elements.forEach((el) => {
+        (el as HTMLElement).style.opacity = '0';
+        (el as HTMLElement).style.transform = 'translateY(24px)';
+
+        inView(
+          el,
+          () => {
+            animate(el, { opacity: 1, transform: 'translateY(0px)' }, { duration: 0.7, easing: [0.25, 0.1, 0.25, 1] });
+          },
+          { margin: '-10% 0px' }
+        );
+      });
+    </script>
+  </body>
+</html>
