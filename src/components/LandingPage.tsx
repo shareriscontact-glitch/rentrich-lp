@@ -159,7 +159,7 @@ const Hero = ({ onCtaClick }: { onCtaClick: (e?: React.MouseEvent) => void }) =>
       </div>
 
       <p className="mt-4 text-text-secondary" style={{ fontSize: 11 }}>
-        メールアドレスだけで完了 · リリース時に真っ先にご連絡します · 先着順で初期費用3ヶ月無料
+        メールアドレスだけで完了 · リリース時に真っ先にご連絡します · 先着順で初期費用と3ヶ月の決済手数料無料
       </p>
     </div>
   </section>
@@ -364,7 +364,17 @@ const CompetitiveTable = () => {
                       borderRight: '1px solid hsl(var(--gold-deep))',
                     }}
                   >
-                    {label === '月額費用' ? (
+                    {label === '決済手数料' ? (
+                      <span className="inline-flex flex-col items-center gap-1">
+                        <span className="text-text-primary" style={{ fontSize: 13 }}>{r}</span>
+                        <span
+                          className="font-sans-ui text-gold-light bg-gold-muted"
+                          style={{ fontSize: 9, letterSpacing: '0.15em', padding: '2px 6px' }}
+                        >
+                          キャンペーン中
+                        </span>
+                      </span>
+                    ) : label === '月額費用' ? (
                       <span className="inline-flex flex-col items-center gap-1">
                         <span className="inline-flex items-baseline gap-2">
                           <span className="text-text-secondary line-through opacity-50" style={{ fontSize: 13 }}>
@@ -558,18 +568,18 @@ const RegisterForm = () => {
           style={{ fontSize: 'clamp(32px, 5vw, 44px)', lineHeight: 1.2 }}
           data-reveal-delay="0.05s"
         >
-          今登録すると、初期費用が{' '}
+          今登録すると、初期費用と{' '}
           <span className="text-gold-deep">
-            <span className="num-cjk">3</span>ヶ月無料
+            <span className="num-cjk">3</span>ヶ月の決済手数料
           </span>{' '}
-          になります。
+          が無料になります。
         </h2>
         <p
           className="reveal mt-8 text-text-secondary text-left"
           style={{ fontSize: 13, lineHeight: 1.9 }}
           data-reveal-delay="0.1s"
         >
-          RentRichは現在、正式リリースに向けて準備中です。家電・時計・ブランド品・家具・おもちゃなど、あらゆる商材のレンタルEC開設に対応します。ご登録いただくと、リリース時に真っ先にお知らせします。登録いただいた方には、初期費用3ヶ月分を無料でご提供します(先着順)。
+          RentRichは現在、正式リリースに向けて準備中です。家電・時計・ブランド品・家具・おもちゃなど、あらゆる商材のレンタルEC開設に対応します。ご登録いただくと、リリース時に真っ先にお知らせします。登録いただいた方には、初期費用と3ヶ月の決済手数料を無料でご提供します(先着順)。
         </p>
 
         <form onSubmit={onSubmit} className="reveal mt-10 flex flex-col gap-3 text-left" data-reveal-delay="0.15s">
