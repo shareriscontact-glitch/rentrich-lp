@@ -1,4 +1,4 @@
-import { useEffect, useState, FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { useReveal } from "~/hooks/use-reveal";
 import itemWatch from "~/assets/item-watch.jpg";
 import itemCamera from "~/assets/item-camera.jpg";
