@@ -11,7 +11,7 @@ import featureStorefront from "~/assets/feature-storefront.jpg";
 import featureBrand from "~/assets/feature-brand.jpg";
 import heroVault from "~/assets/hero-vault.jpg";
 
-const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID ?? "dummy";
+const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID;
 
 const Index = () => {
   useReveal();
@@ -376,6 +376,10 @@ const RegisterForm = () => {
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!FORMSPREE_ID) {
+      setStatus("error");
+      return;
+    }
     setStatus("loading");
     try {
       const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
