@@ -366,7 +366,9 @@ const CompetitiveTable = () => {
                   >
                     {label === '決済手数料' ? (
                       <span className="inline-flex flex-col items-center gap-1">
-                        <span className="text-text-primary" style={{ fontSize: 13 }}>{r}</span>
+                        <span className="text-text-primary" style={{ fontSize: 13 }}>
+                          {r}
+                        </span>
                         <span
                           className="font-sans-ui text-gold-light bg-gold-muted"
                           style={{ fontSize: 9, letterSpacing: '0.15em', padding: '2px 6px' }}
