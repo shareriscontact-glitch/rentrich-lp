@@ -29,11 +29,11 @@ const { language, textDirection } = I18N;
 <html lang={language} dir={textDirection} class="2xl:text-[20px]">
   <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-17P3YDSEKP"></script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-17P3YDSEKP"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+      function gtag(...args) {
+        dataLayer.push(args);
       }
       gtag('js', new Date());
       gtag('config', 'G-17P3YDSEKP');
